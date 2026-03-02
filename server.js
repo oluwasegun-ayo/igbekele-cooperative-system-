@@ -1,23 +1,26 @@
 const express = require("express");
-const path = require("path");
+const { Pool } = require("pg");
 
 const app = express();
 
-// Serve static files from public folder
-app.use(express.static(path.join(__dirname, "public")));
-
-// Root route
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "index.html"));
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: { rejectUnauthorized: false },
 });
 
-// Health route
-app.get("/health", (req, res) => {
-  res.json({ status: "OK", time: new Date() });
+app.use(express.static("public"));
+
+app.get("/", async (req, res) => {
+  try {
+    const result = await pool.query("SELECT NOW()");
+    res.sendFile(__dirname + "/public/index.html");
+  } catch (error) {
+    console.error(error);
+    res.send("Database connection failed ❌");
+  }
 });
 
 const PORT = process.env.PORT || 3000;
-
 app.listen(PORT, () => {
   console.log("Server running on port " + PORT);
 });
