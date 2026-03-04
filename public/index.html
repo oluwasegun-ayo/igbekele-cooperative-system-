@@ -10,9 +10,7 @@
             background: #f4f4f4;
         }
         h1 { color: green; }
-        <button onclick="window.location.href='/login'">
-    Enter System
-</button>
+        <button onclick="enterSystem()">Enter System</button>
             padding: 10px 20px;
             background: green;
             color: white;
@@ -27,3 +25,8 @@
     <button onclick="alert('Welcome!')">Enter System</button>
 </body>
 </html>
+<script>
+function enterSystem(){
+    window.location.href = "/dashboard";
+}
+</script>
