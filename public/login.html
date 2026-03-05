@@ -1,27 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Admin Login</title>
+<title>Login</title>
 
 <style>
 body{
-    font-family: Arial;
-    text-align:center;
-    margin-top:150px;
-}
-
-input{
-    padding:10px;
-    margin:10px;
-    width:250px;
+font-family: Arial;
+text-align:center;
+margin-top:150px;
 }
 
 button{
-    padding:10px 20px;
-    background:green;
-    color:white;
-    border:none;
-    cursor:pointer;
+padding:15px 30px;
+margin:10px;
+font-size:18px;
+background:green;
+color:white;
+border:none;
+cursor:pointer;
 }
 </style>
 
@@ -29,34 +25,17 @@ button{
 
 <body>
 
-<h2>IGBEKELE COOPERATIVE ADMIN LOGIN</h2>
+<h2>IGBEKELE OLUWA MULTIPURPOSE COOPERATIVE SOCIETY</h2>
 
-<input type="text" id="username" placeholder="Username"><br>
+<h3>Select Login Type</h3>
 
-<input type="password" id="password" placeholder="Password"><br>
+<a href="/admin-login.html">
+<button>Admin Login</button>
+</a>
 
-<button onclick="login()">Login</button>
-
-<script>
-
-function login(){
-
-let user = document.getElementById("username").value;
-let pass = document.getElementById("password").value;
-
-if(user === "admin" && pass === "1234"){
-
-window.location.href="/dashboard.html";
-
-}else{
-
-alert("Invalid login details");
-
-}
-
-}
-
-</script>
+<a href="/member-login.html">
+<button>Member Login</button>
+</a>
 
 </body>
 </html>
