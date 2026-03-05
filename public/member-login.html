@@ -1,29 +1,64 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Member Dashboard</title>
+<title>Member Login</title>
 
 <style>
+
 body{
 font-family: Arial;
 text-align:center;
 margin-top:150px;
 }
 
-h1{
-color:green;
+input{
+padding:10px;
+margin:10px;
+width:250px;
 }
+
+button{
+padding:10px 20px;
+background:green;
+color:white;
+border:none;
+cursor:pointer;
+}
+
 </style>
 
 </head>
 
 <body>
 
-<h1>WELCOME MEMBER</h1>
+<h2>MEMBER LOGIN</h2>
 
-<p>This is the member dashboard.</p>
+<input type="text" id="memberID" placeholder="Member ID"><br>
 
-<p>Your cooperative savings, loans and records will appear here.</p>
+<input type="password" id="password" placeholder="Password"><br>
+
+<button onclick="login()">Login</button>
+
+<script>
+
+function login(){
+
+let id = document.getElementById("memberID").value;
+let pass = document.getElementById("password").value;
+
+if(id === "member1" && pass === "1234"){
+
+window.location.href="/member-dashboard.html";
+
+}else{
+
+alert("Invalid Member Login");
+
+}
+
+}
+
+</script>
 
 </body>
 </html>
