@@ -1,7 +1,9 @@
-{
+<a href="/members.html">
+<button>View Members</button>
+</a>{
   "name": "igbekele-cooperative-system",
   "version": "1.0.0",
-  "description": "Cooperative Management System",
+  "description": "Igbele Oluwa Multipurpose Cooperative System",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
