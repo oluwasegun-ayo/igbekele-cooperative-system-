@@ -1,50 +1,16 @@
 const express = require("express");
-const sqlite3 = require("sqlite3").verbose();
 const path = require("path");
 
 const app = express();
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(express.static("public"));
 
-const db = new sqlite3.Database("./members.db");
+app.use(express.static(path.join(__dirname, "public")));
 
-db.run(`
-CREATE TABLE IF NOT EXISTS members (
-id INTEGER PRIMARY KEY AUTOINCREMENT,
-name TEXT,
-phone TEXT,
-address TEXT,
-occupation TEXT,
-nin TEXT
-)
-`);
-
-app.post("/add-member", (req, res) => {
-
-const { name, phone, address, occupation, nin } = req.body;
-
-db.run(
-`INSERT INTO members (name, phone, address, occupation, nin)
-VALUES (?, ?, ?, ?, ?)`,
-[name, phone, address, occupation, nin],
-(err) => {
-
-if(err){
-res.send("Error saving member");
-}else{
-res.send("Member Registered Successfully");
-}
-
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
-});const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+  console.log("Server running on port " + PORT);
 });
-
-</script>
-
-</body>
-</html>
