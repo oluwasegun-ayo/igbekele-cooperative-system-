@@ -1,67 +1,15 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title>Register Member</title>
+<form action="/add-member" method="POST">
 
-<style>
+<input name="name" placeholder="Full Name"><br>
 
-body{
-font-family: Arial;
-margin:40px;
-}
+<input name="phone" placeholder="Phone Number"><br>
 
-h1{
-text-align:center;
-color:green;
-}
+<input name="address" placeholder="Address"><br>
 
-input{
-padding:10px;
-margin:10px;
-width:300px;
-}
+<input name="occupation" placeholder="Occupation"><br>
 
-button{
-padding:10px 20px;
-background:green;
-color:white;
-border:none;
-cursor:pointer;
-}
+<input name="nin" placeholder="NIN Number"><br>
 
-</style>
+<button type="submit">Register Member</button>
 
-</head>
-
-<body>
-
-<h1>REGISTER COOPERATIVE MEMBER</h1>
-
-<input type="file" placeholder="Upload Passport"><br>
-
-<input type="text" placeholder="Full Name"><br>
-
-<input type="text" placeholder="Phone Number"><br>
-
-<input type="text" placeholder="Address"><br>
-
-<input type="text" placeholder="Occupation"><br>
-
-<input type="text" placeholder="NIN Number"><br>
-
-<h3>Guarantor 1</h3>
-
-<input type="text" placeholder="Guarantor Name"><br>
-
-<input type="text" placeholder="Guarantor Phone"><br>
-
-<h3>Guarantor 2</h3>
-
-<input type="text" placeholder="Guarantor Name"><br>
-
-<input type="text" placeholder="Guarantor Phone"><br>
-
-<button>Register Member</button>
-
-</body>
-</html>
+</form>
