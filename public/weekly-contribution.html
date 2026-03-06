@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Weekly Contribution</title>
+
+<style>
+
+body{
+font-family: Arial;
+background:#f4f6f9;
+}
+
+.container{
+width:500px;
+margin:auto;
+margin-top:60px;
+background:white;
+padding:30px;
+border-radius:10px;
+box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
+
+h2{
+text-align:center;
+color:green;
+}
+
+input,select{
+width:100%;
+padding:10px;
+margin:8px 0;
+border:1px solid #ccc;
+border-radius:5px;
+}
+
+button{
+width:100%;
+padding:12px;
+background:green;
+color:white;
+border:none;
+border-radius:5px;
+font-size:16px;
+cursor:pointer;
+}
+
+.fixed{
+background:#eee;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Weekly Contribution</h2>
+
+<form>
+
+<label>Member ID</label>
+<input type="text" placeholder="Enter Member ID">
+
+<label>Week Number</label>
+<select>
+<option>Week 1</option>
+<option>Week 2</option>
+<option>Week 3</option>
+<option>Week 4</option>
+</select>
+
+<label>Minutes Contribution</label>
+<input class="fixed" value="200" readonly>
+
+<label>Share Contribution</label>
+<input class="fixed" value="500" readonly>
+
+<label>Savings Contribution</label>
+<input class="fixed" value="1000" readonly>
+
+<button type="submit">Record Contribution</button>
+
+</form>
+
+</div>
+
+</body>
+</html>
