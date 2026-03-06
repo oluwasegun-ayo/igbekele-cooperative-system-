@@ -1,13 +1,13 @@
 {
   "name": "igbekele-cooperative-system",
   "version": "1.0.0",
+  "description": "Cooperative Management System",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
   },
   "dependencies": {
-    "express": "^4.19.2",
-    "pg": "^8.11.5"
+    "express": "^4.18.2",
     "sqlite3": "^5.1.6"
   }
 }
