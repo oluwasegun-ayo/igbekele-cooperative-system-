@@ -1,37 +1,43 @@
-<form action="/add-member" method="POST">
-
-<input name="name" placeholder="Full Name"><br>
-
-<input name="phone" placeholder="Phone Number"><br>
-
-<input name="address" placeholder="Address"><br>
-
-<input name="occupation" placeholder="Occupation"><br>
-
-<input name="nin" placeholder="NIN Number"><br>
-
+<input type="text" name="name" placeholder="Full Name" required>
+<input type="text" name="phone" placeholder="Phone Number" required>
+<input type="text" name="nin" placeholder="NIN" required>
+<input type="number" name="age" placeholder="Age" required>
+<input type="file" name="passport" accept="image/*">
 <button type="submit">Register Member</button>
+<script>
+document.querySelector("form").addEventListener("submit", function(e){
+  e.preventDefault();
 
-</form>
-<h3>Guarantor 1</h3>
+  let members = JSON.parse(localStorage.getItem("members")) || [];
 
-<label>Name</label>
-<input type="text" name="guarantor1_name" required>
+  // Auto ID
+  let idNumber = (members.length + 1).toString().padStart(3,"0");
+  let memberId = "IGB" + idNumber;
 
-<label>Phone</label>
-<input type="text" name="guarantor1_phone" required>
+  let fileInput = document.querySelector('[name="passport"]');
+  let reader = new FileReader();
 
-<label>Address</label>
-<input type="text" name="guarantor1_address" required>
+  reader.onload = function(){
+    let member = {
+      id: memberId,
+      name: document.querySelector('[name="name"]').value,
+      phone: document.querySelector('[name="phone"]').value,
+      nin: document.querySelector('[name="nin"]').value,
+      age: document.querySelector('[name="age"]').value,
+      passport: reader.result || ""
+    };
 
+    members.push(member);
+    localStorage.setItem("members", JSON.stringify(members));
 
-<h3>Guarantor 2</h3>
+    alert("Member Registered Successfully!");
+    window.location.href = "members.html";
+  };
 
-<label>Name</label>
-<input type="text" name="guarantor2_name" required>
-
-<label>Phone</label>
-<input type="text" name="guarantor2_phone" required>
-
-<label>Address</label>
-<input type="text" name="guarantor2_address" required>
+  if(fileInput.files[0]){
+    reader.readAsDataURL(fileInput.files[0]);
+  } else {
+    reader.onload();
+  }
+});
+</script>
