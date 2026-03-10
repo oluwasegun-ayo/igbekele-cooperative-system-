@@ -13,7 +13,30 @@
 </tr>
 </thead>
 
-<tbody>
+<script>
+let members = JSON.parse(localStorage.getItem("members")) || [];
+let table = document.getElementById("membersTable");
+
+members.forEach((m)=>{
+
+table.innerHTML += `
+<tr>
+<td><img src="${m.passport}" width="40"></td>
+<td>${m.id}</td>
+<td>${m.name}</td>
+<td>${m.phone}</td>
+<td>${m.nin}</td>
+<td>${m.age}</td>
+<td>
+<button>View</button>
+<button>Edit</button>
+<button>Delete</button>
+</td>
+</tr>
+`;
+
+});
+</script><tbody>
 
 <tr>
 <td>IGB001</td>
@@ -31,29 +54,3 @@
 
 <tbody id="membersTable"></tbody>
 </table>
-<script>
-
-let members = JSON.parse(localStorage.getItem("members")) || [];
-
-let table = document.getElementById("membersTable");
-
-members.forEach((m, i) => {
-
-table.innerHTML += `
-<tr>
-<td>IGB${(i+1).toString().padStart(3,'0')}</td>
-<td>${m.name}</td>
-<td>${m.phone}</td>
-<td>${m.nin}</td>
-<td>${m.age}</td>
-<td>
-<button>View</button>
-<button>Edit</button>
-<button>Delete</button>
-</td>
-</tr>
-`;
-
-});
-
-</script>
