@@ -1,9 +1,22 @@
-<input type="text" name="name" placeholder="Full Name" required>
-<input type="text" name="phone" placeholder="Phone Number" required>
-<input type="text" name="nin" placeholder="NIN" required>
-<input type="number" name="age" placeholder="Age" required>
-<input type="file" name="passport" accept="image/*">
+<html>
+<head>
+<title>Add Member</title>
+</head>
+
+<body>
+
+<h2>Register Member</h2>
+
+<form>
+<input type="text" name="name" placeholder="Full Name">
+<input type="text" name="phone" placeholder="Phone Number">
+<input type="text" name="nin" placeholder="NIN">
+<input type="number" name="age" placeholder="Age">
+<input type="file" name="passport">
+
 <button type="submit">Register Member</button>
+</form>
+
 <script>
 document.querySelector("form").addEventListener("submit", function(e){
   e.preventDefault();
@@ -41,3 +54,6 @@ document.querySelector("form").addEventListener("submit", function(e){
   }
 });
 </script>
+
+</body>
+</html>
