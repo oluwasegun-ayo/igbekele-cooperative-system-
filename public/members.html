@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-<title>Members List</title>
+<title>Members</title>
 </head>
 
 <body>
@@ -11,9 +10,6 @@
 
 <h2>Members List</h2>
 
-<input type="text" placeholder="Search Member">
-<button>Search</button>
-
 <a href="add-member.html">
 <button>Add New Member</button>
 </a>
@@ -21,9 +17,7 @@
 <br><br>
 
 <table border="1" width="100%">
-
 <thead>
-
 <tr>
 <th>Passport</th>
 <th>Member ID</th>
@@ -33,7 +27,6 @@
 <th>Age</th>
 <th>Actions</th>
 </tr>
-
 </thead>
 
 <tbody id="membersTable"></tbody>
@@ -66,17 +59,7 @@ table.innerHTML += `
 
 <td>
 
-function viewMember(index){
-
-let members = JSON.parse(localStorage.getItem("members")) || [];
-
-let member = members[index];
-
-localStorage.setItem("selectedMember", JSON.stringify(member));
-
-window.location.href = "member-profile.html";
-
-}
+<button onclick="viewMember(${i})">View</button>
 
 <button onclick="editMember(${i})">Edit</button>
 
@@ -94,15 +77,11 @@ function viewMember(index){
 
 let members = JSON.parse(localStorage.getItem("members")) || [];
 
-let m = members[index];
+let member = members[index];
 
-alert(
-"Member ID: " + m.id + "\n" +
-"Name: " + m.name + "\n" +
-"Phone: " + m.phone + "\n" +
-"NIN: " + m.nin + "\n" +
-"Age: " + m.age
-);
+localStorage.setItem("selectedMember", JSON.stringify(member));
+
+window.location.href = "member-profile.html";
 
 }
 
@@ -128,17 +107,11 @@ function editMember(index){
 
 let members = JSON.parse(localStorage.getItem("members")) || [];
 
-let m = members[index];
-
-let newName = prompt("Edit Name", m.name);
-
-let newPhone = prompt("Edit Phone", m.phone);
+let newName = prompt("Edit Name", members[index].name);
 
 if(newName){
 
 members[index].name = newName;
-
-members[index].phone = newPhone;
 
 localStorage.setItem("members", JSON.stringify(members));
 
@@ -151,5 +124,4 @@ location.reload();
 </script>
 
 </body>
-
 </html>
