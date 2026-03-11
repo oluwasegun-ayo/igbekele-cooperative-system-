@@ -1,23 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Members List</title>
+</head>
+
+<body>
+
 <h1>IGBEKELE OLUWA MULTI PURPOSE COOPERATIVE SOCIETY</h1>
-<h2>Members List</h2><input type="text" placeholder="Search Member">
-<button>Search</button><button>Add New Member</button><table border="1" width="100%">
+
+<h2>Members List</h2>
+
+<input type="text" placeholder="Search Member">
+<button>Search</button>
+
+<a href="add-member.html">
+<button>Add New Member</button>
+</a>
+
+<br><br>
+
+<table border="1" width="100%">
+
 <thead>
+
+<tr>
+<th>Passport</th>
+<th>Member ID</th>
+<th>Name</th>
+<th>Phone</th>
+<th>NIN</th>
+<th>Age</th>
+<th>Actions</th>
+</tr>
+
+</thead>
+
+<tbody id="membersTable"></tbody>
+
+</table>
+
+
+<script>
+
+let members = JSON.parse(localStorage.getItem("members")) || [];
+
+let table = document.getElementById("membersTable");
+
+members.forEach((m,i)=>{
+
 table.innerHTML += `
 <tr>
-<td><img src="${m.passport}" width="40"></td>
+
+<td><img src="${m.passport || ''}" width="40"></td>
+
 <td>${m.id}</td>
+
 <td>${m.name}</td>
+
 <td>${m.phone}</td>
+
 <td>${m.nin}</td>
+
 <td>${m.age}</td>
+
 <td>
+
 <button onclick="viewMember(${i})">View</button>
+
 <button onclick="editMember(${i})">Edit</button>
+
 <button onclick="deleteMember(${i})">Delete</button>
+
 </td>
+
 </tr>
 `;
-<script>
+
+});
+
 
 function viewMember(index){
 
@@ -35,6 +96,7 @@ alert(
 
 }
 
+
 function deleteMember(index){
 
 let members = JSON.parse(localStorage.getItem("members")) || [];
@@ -50,6 +112,7 @@ location.reload();
 }
 
 }
+
 
 function editMember(index){
 
@@ -76,3 +139,7 @@ location.reload();
 }
 
 </script>
+
+</body>
+
+</html>
