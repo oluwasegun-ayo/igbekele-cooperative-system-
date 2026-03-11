@@ -2,6 +2,9 @@
 <h2>Members List</h2><input type="text" placeholder="Search Member">
 <button>Search</button><button>Add New Member</button><table border="1" width="100%">
 <thead>
+<table border="1" width="100%">
+
+<thead>
 <tr>
 <th>Passport</th>
 <th>Member ID</th>
@@ -12,6 +15,10 @@
 <th>Actions</th>
 </tr>
 </thead>
+
+<tbody id="membersTable"></tbody>
+
+</table>
 
 <script>
 let members = JSON.parse(localStorage.getItem("members")) || [];
