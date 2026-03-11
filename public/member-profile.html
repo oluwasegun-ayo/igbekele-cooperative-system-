@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Member Profile</title>
+</head>
+
+<body>
+
+<h1>Member Profile</h1>
+
+<div id="profile"></div>
+
+<script>
+
+let member = JSON.parse(localStorage.getItem("selectedMember"));
+
+let profile = document.getElementById("profile");
+
+profile.innerHTML = `
+
+<img src="${member.passport || ''}" width="100"><br><br>
+
+<b>Member ID:</b> ${member.id}<br><br>
+
+<b>Name:</b> ${member.name}<br><br>
+
+<b>Phone:</b> ${member.phone}<br><br>
+
+<b>NIN:</b> ${member.nin}<br><br>
+
+<b>Age:</b> ${member.age}<br><br>
+
+<h3>Financial Summary</h3>
+
+Minutes Paid: 0<br>
+Shares: 0<br>
+Savings: 0<br>
+Loan Balance: 0
+
+`;
+
+</script>
+
+</body>
+
+</html>
