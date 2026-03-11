@@ -1,114 +1,60 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title>Weekly Contribution</title>
+<form id="contributionForm">
 
-<style>
+<input type="text" name="memberId" placeholder="Enter Member ID">
 
-body{
-font-family: Arial;
-background:#f4f6f9;
-}
-
-.container{
-width:500px;
-margin:auto;
-margin-top:60px;
-background:white;
-padding:30px;
-border-radius:10px;
-box-shadow:0 0 10px rgba(0,0,0,0.1);
-}
-
-h2{
-text-align:center;
-color:green;
-}
-
-input,select{
-width:100%;
-padding:10px;
-margin:8px 0;
-border:1px solid #ccc;
-border-radius:5px;
-}
-
-button{
-width:100%;
-padding:12px;
-background:green;
-color:white;
-border:none;
-border-radius:5px;
-font-size:16px;
-cursor:pointer;
-}
-
-.fixed{
-background:#eee;
-}
-
-</style>
-
-</head>
-
-<body>
-
-<div class="container">
-
-<h2>Weekly Contribution</h2>
-
-<form>
-
-<label>Member ID</label>
-<input type="text" placeholder="Enter Member ID">
-
-<label>Week Number</label>
-<select>
-<option>Week 1</option>
-<option>Week 2</option>
-<option>Week 3</option>
-<option>Week 4</option>
+<select name="week">
+<option value="1">Week 1</option>
+<option value="2">Week 2</option>
+<option value="3">Week 3</option>
+<option value="4">Week 4</option>
 </select>
 
-<label>Minutes Contribution</label>
-<input class="fixed" value="200" readonly>
+<input type="number" name="minutes" value="200">
 
-<label>Share Contribution</label>
-<input class="fixed" value="500" readonly>
+<input type="number" name="shares" value="500">
 
-<label>Savings Contribution</label>
-<input class="fixed" value="1000" readonly>
+<input type="number" name="savings" value="1000">
 
 <button type="submit">Record Contribution</button>
+
+</form>
 <script>
 
-document.querySelector("form").addEventListener("submit", function(e){
-
-e.preventDefault();
-
+let member = JSON.parse(localStorage.getItem("selectedMember"));
 let contributions = JSON.parse(localStorage.getItem("contributions")) || [];
 
-let record = {
-memberId: document.querySelector('[name="memberId"]').value,
-week: document.querySelector('[name="week"]').value,
-minutes: Number(document.querySelector('[name="minutes"]').value),
-shares: Number(document.querySelector('[name="shares"]').value),
-savings: Number(document.querySelector('[name="savings"]').value)
-};
+let minutes = 0;
+let shares = 0;
+let savings = 0;
 
-contributions.push(record);
+contributions.forEach(c => {
 
-localStorage.setItem("contributions", JSON.stringify(contributions));
+if(c.memberId === member.id){
 
-alert("Contribution Recorded");
+minutes += c.minutes;
+shares += c.shares;
+savings += c.savings;
+
+}
 
 });
 
+document.getElementById("profile").innerHTML = `
+
+<img src="${member.passport || ''}" width="100"><br><br>
+
+<b>Member ID:</b> ${member.id}<br>
+<b>Name:</b> ${member.name}<br>
+<b>Phone:</b> ${member.phone}<br>
+<b>NIN:</b> ${member.nin}<br>
+<b>Age:</b> ${member.age}<br><br>
+
+<h3>Financial Summary</h3>
+
+Minutes Paid: ${minutes}<br>
+Shares: ${shares}<br>
+Savings: ${savings}<br>
+
+`;
+
 </script>
-</form>
-
-</div>
-
-</body>
-</html>
