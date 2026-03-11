@@ -81,7 +81,31 @@ background:#eee;
 <input class="fixed" value="1000" readonly>
 
 <button type="submit">Record Contribution</button>
+<script>
 
+document.querySelector("form").addEventListener("submit", function(e){
+
+e.preventDefault();
+
+let contributions = JSON.parse(localStorage.getItem("contributions")) || [];
+
+let record = {
+memberId: document.querySelector('[name="memberId"]').value,
+week: document.querySelector('[name="week"]').value,
+minutes: Number(document.querySelector('[name="minutes"]').value),
+shares: Number(document.querySelector('[name="shares"]').value),
+savings: Number(document.querySelector('[name="savings"]').value)
+};
+
+contributions.push(record);
+
+localStorage.setItem("contributions", JSON.stringify(contributions));
+
+alert("Contribution Recorded");
+
+});
+
+</script>
 </form>
 
 </div>
