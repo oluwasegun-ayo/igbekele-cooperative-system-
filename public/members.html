@@ -2,40 +2,7 @@
 <h2>Members List</h2><input type="text" placeholder="Search Member">
 <button>Search</button><button>Add New Member</button><table border="1" width="100%">
 <thead>
-<table border="1" width="100%">
-
-<thead>
-<tr>
-<th>Passport</th>
-<th>Member ID</th>
-<th>Name</th>
-<th>Phone</th>
-<th>NIN</th>
-<th>Age</th>
-<th>Actions</th>
-</tr>
-</thead>
-
-<tbody id="membersTable"></tbody>
-
-</table>
-
-<script>
-let members = JSON.parse(localStorage.getItem("members")) || [];
-let table = document.getElementById("membersTable");
-
-members.forEach((m)=>{
-
-
-
-});
-</script><tbody>
-
-<button>View</button>
-<button>Edit</button>
-<button>Delete</button>
-</td>
-</ttable.innerHTML += `
+table.innerHTML += `
 <tr>
 <td><img src="${m.passport}" width="40"></td>
 <td>${m.id}</td>
@@ -49,7 +16,63 @@ members.forEach((m)=>{
 <button onclick="deleteMember(${i})">Delete</button>
 </td>
 </tr>
-`;r>
+`;
+<script>
 
-<tbody id="membersTable"></tbody>
-</table>
+function viewMember(index){
+
+let members = JSON.parse(localStorage.getItem("members")) || [];
+
+let m = members[index];
+
+alert(
+"Member ID: " + m.id + "\n" +
+"Name: " + m.name + "\n" +
+"Phone: " + m.phone + "\n" +
+"NIN: " + m.nin + "\n" +
+"Age: " + m.age
+);
+
+}
+
+function deleteMember(index){
+
+let members = JSON.parse(localStorage.getItem("members")) || [];
+
+if(confirm("Delete this member?")){
+
+members.splice(index,1);
+
+localStorage.setItem("members", JSON.stringify(members));
+
+location.reload();
+
+}
+
+}
+
+function editMember(index){
+
+let members = JSON.parse(localStorage.getItem("members")) || [];
+
+let m = members[index];
+
+let newName = prompt("Edit Name", m.name);
+
+let newPhone = prompt("Edit Phone", m.phone);
+
+if(newName){
+
+members[index].name = newName;
+
+members[index].phone = newPhone;
+
+localStorage.setItem("members", JSON.stringify(members));
+
+location.reload();
+
+}
+
+}
+
+</script>
