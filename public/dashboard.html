@@ -106,7 +106,37 @@ background:#eee;
 }
 
 </style>
+<script>
 
+let contributions = JSON.parse(localStorage.getItem("contributions")) || [];
+
+let minutesTotal = 0;
+let sharesTotal = 0;
+let savingsTotal = 0;
+
+contributions.forEach(c => {
+
+minutesTotal += Number(c.minutes);
+
+sharesTotal += Number(c.shares);
+
+savingsTotal += Number(c.savings);
+
+});
+
+let totalCollection = minutesTotal + sharesTotal + savingsTotal;
+
+document.getElementById("financialSummary").innerHTML =
+
+"Minutes Collected: " + minutesTotal + "<br><br>" +
+
+"Shares Collected: " + sharesTotal + "<br><br>" +
+
+"Savings Collected: " + savingsTotal + "<br><br>" +
+
+"Total Weekly Collection: " + totalCollection;
+
+</script>
 </head>
 
 <body>
@@ -149,3 +179,16 @@ background:#eee;
 <button>Check Defaulters</button>
 </a>
 <a href="members.html">Members</a>
+<h2>Weekly Financial Summary</h2>
+
+<div id="financialSummary">
+
+Minutes Collected: 0 <br><br>
+
+Shares Collected: 0 <br><br>
+
+Savings Collected: 0 <br><br>
+
+Total Weekly Collection: 0
+
+</div>
