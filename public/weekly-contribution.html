@@ -7,84 +7,26 @@
 
 <body>
 
-<h1>IGBEKELE OLUWA MULTI PURPOSE COOPERATIVE SOCIETY</h1>
-
 <h2>Weekly Contribution</h2>
 
 <form id="contributionForm">
 
-<input type="text" name="memberId" placeholder="Enter Member ID (Example: IGB001)" required>
+Member ID<br>
+<input type="text" id="memberId" placeholder="Example: IGB001"><br><br>
 
-<label>Week</label><br>
-<select name="week">
-<option value="Week 1">Week 1</option>
-<option value="Week 2">Week 2</option>
-<option value="Week 3">Week 3</option>
-<option value="Week 4">Week 4</option>
-</select><br><br>
+Minutes<br>
+<input type="number" id="minutes"><br><br>
 
-<input type="number" name="minutes" placeholder="Enter Minutes Amount">
-<input type="number" name="shares" placeholder="Enter Shares Amount">
-<input type="number" name="savings" placeholder="Enter Savings Amount">
+Shares<br>
+<input type="number" id="shares"><br><br>
+
+Savings<br>
+<input type="number" id="savings"><br><br>
 
 <button type="submit">Record Contribution</button>
 
 </form>
 
-<br><br>
-
-<h3>Contribution Records</h3>
-
-<table border="1" width="100%">
-<thead>
-<tr>
-<th>Member ID</th>
-<th>Week</th>
-<th>Minutes</th>
-<th>Shares</th>
-<th>Savings</th>
-</tr>
-</thead>
-
-<tbody id="recordsTable"></tbody>
-
-</table>
-
-<script>
-
-let records = JSON.parse(localStorage.getItem("contributions")) || [];
-
-let table = document.getElementById("recordsTable");
-
-records.forEach(r => {
-
-table.innerHTML += `
-<tr>
-<td>${r.memberId}</td>
-<td>${r.week}</td>
-<td>${r.minutes}</td>
-<td>${r.shares}</td>
-<td>${r.savings}</td>
-</tr>
-`;
-
-});
-
-document.getElementById("contributionForm").addEventListener("submit", function(e){
-
-e.preventDefault();
-
-let record = {
-
-memberId: document.querySelector('[name="memberId"]').value,
-
-week: document.querySelector('[name="week"]').value,
-
-minutes: Number(document.querySelector('[name="minutes"]').value),
-
-shares: Number(document.querySelector('[name="shares"]').value),
-
-savings: Number(document.querySelector('[name="
 <script>
 
 document.getElementById("contributionForm").addEventListener("submit", function(e){
@@ -95,15 +37,13 @@ let contributions = JSON.parse(localStorage.getItem("contributions")) || [];
 
 let record = {
 
-memberId: document.querySelector('[name="memberId"]').value,
+memberId: document.getElementById("memberId").value,
 
-week: document.querySelector('[name="week"]').value,
+minutes: Number(document.getElementById("minutes").value),
 
-minutes: Number(document.querySelector('[name="minutes"]').value),
+shares: Number(document.getElementById("shares").value),
 
-shares: Number(document.querySelector('[name="shares"]').value),
-
-savings: Number(document.querySelector('[name="savings"]').value)
+savings: Number(document.getElementById("savings").value)
 
 };
 
@@ -111,10 +51,11 @@ contributions.push(record);
 
 localStorage.setItem("contributions", JSON.stringify(contributions));
 
-alert("Contribution recorded successfully");
-
-location.reload();
+alert("Contribution saved");
 
 });
 
 </script>
+
+</body>
+</html>
