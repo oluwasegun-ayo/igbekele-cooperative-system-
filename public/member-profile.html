@@ -16,32 +16,30 @@ let member = JSON.parse(localStorage.getItem("selectedMember"));
 
 let contributions = JSON.parse(localStorage.getItem("contributions")) || [];
 
-let minutesTotal = 0;
-let sharesTotal = 0;
-let savingsTotal = 0;
+let minutes = 0;
+let shares = 0;
+let savings = 0;
 
 contributions.forEach(c => {
 
 if(c.memberId === member.id){
 
-minutesTotal += c.minutes;
-sharesTotal += c.shares;
-savingsTotal += c.savings;
+minutes += c.minutes;
+shares += c.shares;
+savings += c.savings;
 
 }
 
 });
 
-document.getElementById("profile").innerHTML = `
+document.getElementById("profile").innerHTML =
 
-<h2>${member.name}</h2>
+"<h2>" + member.name + "</h2>" +
 
-Minutes Paid: ${minutesTotal}<br><br>
+"Minutes Paid: " + minutes + "<br><br>" +
 
-Shares: ${sharesTotal}<br><br>
+"Shares: " + shares + "<br><br>" +
 
-Savings: ${savingsTotal}
-
-`;
+"Savings: " + savings;
 
 </script>
