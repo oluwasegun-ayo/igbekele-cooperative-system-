@@ -24,14 +24,9 @@
 <option value="Week 4">Week 4</option>
 </select><br><br>
 
-<label>Minutes</label><br>
-<input type="number" name="minutes" value="200"><br><br>
-
-<label>Shares</label><br>
-<input type="number" name="shares" value="500"><br><br>
-
-<label>Savings</label><br>
-<input type="number" name="savings" value="500"><br><br>
+<input type="number" name="minutes" placeholder="Enter Minutes Amount">
+<input type="number" name="shares" placeholder="Enter Shares Amount">
+<input type="number" name="savings" placeholder="Enter Savings Amount">
 
 <button type="submit">Record Contribution</button>
 
@@ -91,3 +86,36 @@ minutes: Number(document.querySelector('[name="minutes"]').value),
 shares: Number(document.querySelector('[name="shares"]').value),
 
 savings: Number(document.querySelector('[name="
+<script>
+
+document.getElementById("contributionForm").addEventListener("submit", function(e){
+
+e.preventDefault();
+
+let contributions = JSON.parse(localStorage.getItem("contributions")) || [];
+
+let record = {
+
+memberId: document.querySelector('[name="memberId"]').value,
+
+week: document.querySelector('[name="week"]').value,
+
+minutes: Number(document.querySelector('[name="minutes"]').value),
+
+shares: Number(document.querySelector('[name="shares"]').value),
+
+savings: Number(document.querySelector('[name="savings"]').value)
+
+};
+
+contributions.push(record);
+
+localStorage.setItem("contributions", JSON.stringify(contributions));
+
+alert("Contribution recorded successfully");
+
+location.reload();
+
+});
+
+</script>
