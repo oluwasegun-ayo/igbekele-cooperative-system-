@@ -14,14 +14,14 @@
 <form id="contributionForm">
 
 <label>Member ID</label><br>
-<input type="text" name="memberId" placeholder="Enter Member ID"><br><br>
+<input type="text" name="memberId" placeholder="Enter Member ID" required><br><br>
 
 <label>Week</label><br>
 <select name="week">
-<option value="1">Week 1</option>
-<option value="2">Week 2</option>
-<option value="3">Week 3</option>
-<option value="4">Week 4</option>
+<option value="Week 1">Week 1</option>
+<option value="Week 2">Week 2</option>
+<option value="Week 3">Week 3</option>
+<option value="Week 4">Week 4</option>
 </select><br><br>
 
 <label>Minutes</label><br>
@@ -42,7 +42,6 @@
 <h3>Contribution Records</h3>
 
 <table border="1" width="100%">
-
 <thead>
 <tr>
 <th>Member ID</th>
@@ -87,24 +86,8 @@ memberId: document.querySelector('[name="memberId"]').value,
 
 week: document.querySelector('[name="week"]').value,
 
-minutes: document.querySelector('[name="minutes"]').value,
+minutes: Number(document.querySelector('[name="minutes"]').value),
 
-shares: document.querySelector('[name="shares"]').value,
+shares: Number(document.querySelector('[name="shares"]').value),
 
-savings: document.querySelector('[name="savings"]').value
-
-};
-
-records.push(record);
-
-localStorage.setItem("contributions", JSON.stringify(records));
-
-location.reload();
-
-});
-
-</script>
-
-</body>
-
-</html>
+savings: Number(document.querySelector('[name="
