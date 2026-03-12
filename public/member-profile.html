@@ -10,14 +10,31 @@
 <h1>Member Profile</h1>
 
 <div id="profile"></div>
-
 <script>
 
 let member = JSON.parse(localStorage.getItem("selectedMember"));
 
-let profile = document.getElementById("profile");
+let contributions = JSON.parse(localStorage.getItem("contributions")) || [];
 
-profile.innerHTML = `
+let minutesTotal = 0;
+let sharesTotal = 0;
+let savingsTotal = 0;
+
+contributions.forEach(c => {
+
+if(c.memberId === member.id){
+
+minutesTotal += Number(c.minutes);
+sharesTotal += Number(c.shares);
+savingsTotal += Number(c.savings);
+
+}
+
+});
+
+document.getElementById("profile").innerHTML = `
+
+<h2>Member Profile</h2>
 
 <img src="${member.passport || ''}" width="100"><br><br>
 
@@ -31,47 +48,17 @@ profile.innerHTML = `
 
 <b>Age:</b> ${member.age}<br><br>
 
-<script>
-
-let member = JSON.parse(localStorage.getItem("selectedMember"));
-let contributions = JSON.parse(localStorage.getItem("contributions")) || [];
-
-let minutes = 0;
-let shares = 0;
-let savings = 0;
-
-contributions.forEach(c => {
-
-if(c.memberId === member.id){
-
-minutes += c.minutes;
-shares += c.shares;
-savings += c.savings;
-
-}
-
-});
-
-document.getElementById("profile").innerHTML = `
-
-<img src="${member.passport || ''}" width="100"><br><br>
-
-<b>Member ID:</b> ${member.id}<br>
-<b>Name:</b> ${member.name}<br>
-<b>Phone:</b> ${member.phone}<br>
-<b>NIN:</b> ${member.nin}<br>
-<b>Age:</b> ${member.age}<br><br>
-
 <h3>Financial Summary</h3>
 
-Minutes Paid: ${minutes}<br>
-Shares: ${shares}<br>
-Savings: ${savings}<br>
+Minutes Paid: ${minutesTotal}<br><br>
+
+Shares: ${sharesTotal}<br><br>
+
+Savings: ${savingsTotal}<br><br>
 
 `;
 
 </script>
-
 </body>
 
 </html>
