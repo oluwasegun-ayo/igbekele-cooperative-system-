@@ -24,9 +24,9 @@ contributions.forEach(c => {
 
 if(c.memberId === member.id){
 
-minutesTotal += Number(c.minutes);
-sharesTotal += Number(c.shares);
-savingsTotal += Number(c.savings);
+minutesTotal += c.minutes;
+sharesTotal += c.shares;
+savingsTotal += c.savings;
 
 }
 
@@ -34,27 +34,13 @@ savingsTotal += Number(c.savings);
 
 document.getElementById("profile").innerHTML = `
 
-<h2>Member Profile</h2>
-
-<img src="${member.passport || ''}" width="100"><br><br>
-
-<b>Member ID:</b> ${member.id}<br><br>
-
-<b>Name:</b> ${member.name}<br><br>
-
-<b>Phone:</b> ${member.phone}<br><br>
-
-<b>NIN:</b> ${member.nin}<br><br>
-
-<b>Age:</b> ${member.age}<br><br>
-
-<h3>Financial Summary</h3>
+<h2>${member.name}</h2>
 
 Minutes Paid: ${minutesTotal}<br><br>
 
 Shares: ${sharesTotal}<br><br>
 
-Savings: ${savingsTotal}<br><br>
+Savings: ${savingsTotal}
 
 `;
 
