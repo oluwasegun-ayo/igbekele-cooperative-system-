@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Loan Application</title>
+</head>
+
+<body>
+
+<h1>Loan Application</h1>
+
+<form id="loanForm">
+
+Member ID<br>
+<input type="text" id="memberId"><br><br>
+
+Loan Type<br>
+<select id="loanType">
+
+<option>Welcome Loan</option>
+<option>3 Month Loan</option>
+<option>Flexible Loan</option>
+
+</select><br><br>
+
+Loan Amount<br>
+<input type="number" id="loanAmount"><br><br>
+
+Duration (Months)<br>
+<input type="number" id="duration"><br><br>
+
+<button type="submit">Apply Loan</button>
+
+</form>
+
+<script>
+
+document.getElementById("loanForm").addEventListener("submit", function(e){
+
+e.preventDefault();
+
+let loans = JSON.parse(localStorage.getItem("loans")) || [];
+
+let loan = {
+
+memberId: document.getElementById("memberId").value,
+
+loanType: document.getElementById("loanType").value,
+
+amount: Number(document.getElementById("loanAmount").value),
+
+duration: Number(document.getElementById("duration").value)
+
+};
+
+loans.push(loan);
+
+localStorage.setItem("loans", JSON.stringify(loans));
+
+alert("Loan Application Recorded");
+
+});
+
+</script>
+
+</body>
+
+</html>
