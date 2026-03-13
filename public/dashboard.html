@@ -159,20 +159,27 @@ document.getElementById("financialSummary").innerHTML =
 </select>
 
 <label>Minutes Contribution</label>
-<input class="fixed" value="200" readonly>
+<input type="number" id="minutes" placeholder="Enter minutes amount">
 
 <label>Share Contribution</label>
-<input class="fixed" value="500" readonly>
+<input type="number" id="shares" placeholder="Enter share amount">
 
 <label>Savings Contribution</label>
-<input class="fixed" value="1000" readonly>
+<input type="number" id="savings" placeholder="Enter savings amount">
 
 <button onclick="recordContribution()">Record Contribution</button>
 
 </form>
 
 </div>
-<script>
+<script><label>Minutes Contribution</label>
+<input type="number" id="minutes" placeholder="Enter minutes amount">
+
+<label>Share Contribution</label>
+<input type="number" id="shares" placeholder="Enter share amount">
+
+<label>Savings Contribution</label>
+<input type="number" id="savings" placeholder="Enter savings amount">
 
 function recordContribution(){
 
