@@ -7,43 +7,76 @@
 
 <body>
 
-<h2>Weekly Contribution</h2>
+<h1>Weekly Contribution</h1>
 
-<form id="contributionForm">
+<table border="1" width="100%">
 
-Member ID<br>
-<input type="text" id="memberId" placeholder="Example: IGB001"><br><br>
+<thead>
+<tr>
+<th>Member</th>
+<th>Minutes</th>
+<th>Shares</th>
+<th>Savings</th>
+<th>Record</th>
+</tr>
+</thead>
 
-Minutes<br>
-<input type="number" id="minutes"><br><br>
+<tbody id="memberTable"></tbody>
 
-Shares<br>
-<input type="number" id="shares"><br><br>
-
-Savings<br>
-<input type="number" id="savings"><br><br>
-
-<button type="submit">Record Contribution</button>
-
-</form>
+</table>
 
 <script>
 
-document.getElementById("contributionForm").addEventListener("submit", function(e){
-
-e.preventDefault();
+let members = JSON.parse(localStorage.getItem("members")) || [];
 
 let contributions = JSON.parse(localStorage.getItem("contributions")) || [];
 
+let table = document.getElementById("memberTable");
+
+members.forEach((m,i)=>{
+
+table.innerHTML += `
+<tr>
+
+<td>${m.name} (${m.id})</td>
+
+<td><input type="number" id="minutes${i}" placeholder="200"></td>
+
+<td><input type="number" id="shares${i}" placeholder="500"></td>
+
+<td><input type="number" id="savings${i}" placeholder="500"></td>
+
+<td>
+
+<button onclick="recordContribution(${i})">Record</button>
+
+</td>
+
+</tr>
+`;
+
+});
+
+
+function recordContribution(index){
+
+let member = members[index];
+
+let minutes = document.getElementById("minutes"+index).value;
+
+let shares = document.getElementById("shares"+index).value;
+
+let savings = document.getElementById("savings"+index).value;
+
 let record = {
 
-memberId: document.getElementById("memberId").value,
+memberId: member.id,
 
-minutes: Number(document.getElementById("minutes").value),
+minutes: Number(minutes),
 
-shares: Number(document.getElementById("shares").value),
+shares: Number(shares),
 
-savings: Number(document.getElementById("savings").value)
+savings: Number(savings)
 
 };
 
@@ -51,11 +84,12 @@ contributions.push(record);
 
 localStorage.setItem("contributions", JSON.stringify(contributions));
 
-alert("Contribution saved");
+alert("Contribution recorded for " + member.name);
 
-});
+}
 
 </script>
 
 </body>
+
 </html>
