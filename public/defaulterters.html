@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Defaulters</title>
+</head>
+
+<body>
+
+<h1>Weekly Defaulters</h1>
+
+<table border="1" width="100%">
+
+<thead>
+<tr>
+<th>Member ID</th>
+<th>Name</th>
+<th>Status</th>
+</tr>
+</thead>
+
+<tbody id="defaultersTable"></tbody>
+
+</table>
+
+<script>
+
+let members = JSON.parse(localStorage.getItem("members")) || [];
+
+let contributions = JSON.parse(localStorage.getItem("contributions")) || [];
+
+let table = document.getElementById("defaultersTable");
+
+members.forEach(member => {
+
+let paid = contributions.some(c => c.memberId === member.id);
+
+if(!paid){
+
+table.innerHTML += `
+<tr>
+<td>${member.id}</td>
+<td>${member.name}</td>
+<td>Did Not Pay</td>
+</tr>
+`;
+
+}
+
+});
+
+</script>
+
+</body>
+
+</html>
