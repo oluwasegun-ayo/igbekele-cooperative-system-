@@ -172,7 +172,41 @@ document.getElementById("financialSummary").innerHTML =
 </form>
 
 </div>
+<script>
 
+function recordContribution(){
+
+let memberId = document.querySelector('input[placeholder="Enter Member ID"]').value;
+
+let week = document.querySelector('select').value;
+
+let minutes = document.querySelector('input[value="200"]').value;
+
+let shares = document.querySelector('input[value="500"]').value;
+
+let savings = document.querySelector('input[value="1000"]').value;
+
+let contributions = JSON.parse(localStorage.getItem("contributions")) || [];
+
+let record = {
+
+memberId: memberId,
+week: week,
+minutes: Number(minutes),
+shares: Number(shares),
+savings: Number(savings)
+
+};
+
+contributions.push(record);
+
+localStorage.setItem("contributions", JSON.stringify(contributions));
+
+alert("Contribution Recorded Successfully");
+
+}
+
+</script>
 </body>
 </html>
 <a href="/defaulters.html">
